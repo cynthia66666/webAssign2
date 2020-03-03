@@ -1,0 +1,45 @@
+
+  <div class="container">
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<form method="POST" action="/cusRegistration" role="form" class="reg">
+						<img src="img/transparent.jpg" width="100" height="75" >
+						<div class="form-reg">
+							<h2 class="form-title">Create account</h2>
+						</div>
+						<div class="form-reg">
+							<label class="control-label" for="signupName">Your name</label> <br>
+							<input id="signupName" type="text"  class="form-control" name="signupName" value="{{this.signupName}}">
+   							 <div>{{this.nerror}}</div>
+						</div>
+						<br>
+						<div class="form-reg">
+							<label class="control-label" for="signupEmail">Email</label> <br>
+							<input id="signupEmail" type="email"  class="form-control" name="signupEmail"  value="{{this.signupEmail}}">
+							<div>{{this.eerror}}</div>
+						</div>
+						<br>
+						<div class="form-reg">
+							<label class="control-label" for="signupPassword">Password</label> <br>
+							<input id="signupPassword" type="password"  class="form-control" placeholder="at least 6 characters" name="password"  value="{{this.password}}">
+							<div>{{this.perror}}</div>
+						</div><br>
+						<div class="form-reg">
+							<label class="control-label" for="signupPasswordagain">Password again</label> <br>
+							<input id="signupPasswordagain" type="password" class="form-control" name="passwordagain"  value="{{this.passwordagain}}">
+							<div >{{this.paerror}}</div>
+						</div>
+                        <br>
+						<div class="form-reg">
+							<button id="signupSubmit" type="submit" class="btn btn-info btn-block">Create your account</button>
+						</div>
+						<br>
+						<hr>
+						<p></p>Already have an account? <a href="/login">Sign in</a></p>
+
+					</form><br>
+				</div>
+			</div>
+		</div>
+	</div>

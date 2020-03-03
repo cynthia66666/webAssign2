@@ -1,0 +1,37 @@
+<div class="productPage">
+    
+    <div class="product">
+        <div class="product-menu">
+            <p class="product-title">All Products</p>
+            <!--<p class="product-title-des">showing all product</p>-->
+            
+            <p class="product-menu-title">Shop Valentine's Day gifts</p>
+            <p class="product-menu-title">Fitness,Cardio and more</p>
+            <p class="product-menu-title">Revamp your home</p>
+        </div>
+        <div class="product-contain">
+            {{#each data}}
+            <div class="product-box">
+                {{#if this.bs}}
+                <div class="best-logo">Best Seller</div>
+                {{else}}
+                <div class="not-best">On sale</div>
+                {{/if}}
+                <div class="product-img">
+                    <img src="{{this.img}}" alt="{{this.title}}" width="260" height="240">
+                </div>
+                
+                <p class="product-titles">
+                    {{this.title}}
+                </p>
+                <p class="product-price">
+                    Price: $ {{this.price}}
+                </p>
+                <p class="product-cate">
+                     {{this.cate}}
+                </p>
+
+            </div>
+            {{/each}}
+        </div>
+    </div>

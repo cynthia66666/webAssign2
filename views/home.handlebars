@@ -1,0 +1,38 @@
+<div class="home">
+      <!-- deals-->
+        <center>
+        <p class="deals">New Deals Everyday</p></center>
+        <img src="/img/banner.JPG" alt="deals" width="1550" height="250" >
+      <!-- categories-->  
+      <div class="category">
+        <p class="cate-t">Browse more</p>
+        <div class="cate">
+        {{#each data}}
+        <div class="cate-box">
+           <p class="cate-title">
+             
+               {{this.cate}}
+            </p>
+            <img src="{{this.img}}" alt="{{this.title}}" width="300" height="250"> <br>
+
+            <p><a class="cate-ex" href="/products">Find More</a></p>
+        </div>
+        {{/each}}
+    </div>
+    </div>
+
+  <!-- bestseller--> 
+    <div class="best-seller">
+      <span class="bs">
+        <h class="bs-title">Best sellers</h>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/products" class="productslink">explore more</a>
+      </span>
+        <div class="best">
+        {{#each data1}}
+        <div class="bs-box">
+          
+            <img src="{{this.img}}" alt="{{this.title}}"width="330" height="330"> <br>
+        </div>
+        {{/each}}
+      </div>
+      </div>
