@@ -121,7 +121,7 @@ app.post("/cusRegistration",(req,res)=>{
 
         sgMail.send(msg)
         .then(()=>{
-            res.redirect("/");
+            res.redirect("/regissub");
         })
         .catch(err=>{
             console.log(`Error ${err}`);
@@ -129,7 +129,11 @@ app.post("/cusRegistration",(req,res)=>{
     
     }
 });
-
+app.get("/regissub",(req,res)=>{
+    res.render("regissub",{
+        title :"Register Submit"
+    })
+})
 
 app.post("/login",(req,res)=>{
    const errornm=[];
