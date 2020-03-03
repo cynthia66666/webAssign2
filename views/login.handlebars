@@ -10,16 +10,17 @@
                         <br>
 						<div class="form-group">
 							<strong><label class="control-label"for="Email or mobile phone number" >Email or mobile phone number</label></strong>
-							<input id="signinEmail" type="email" maxlength="50" class="form-control">
+							<input id="signinEmail" type="email" maxlength="50" class="form-control" name="signinEmail" value="{{this.sighupEmail}}">
+							<div>{{this.nmerror}}</div>
 						</div>
                         <br>
 						<div class="form-group">
 							<strong><label class="control-label"for="password">Password</label></strong><br>
 							<span class="right"><a href="#">Need help?</a></span>
-							<input id="signinPassword" type="password" maxlength="25" class="form-control"
+							<input id="signinPassword" type="password" maxlength="25" class="form-control" name="signinPassword" value="{{this.sighupPassword}}"
                                 placeholder="At least 6 characters" required> 
                                 <p class="detailreq">Password must consist of at least 6 characters</p>
-                                
+                                <div>{{this.pqerror}}</div>
 						</div>
 						<div class="form-group" style="padding-top: 12px;">
 							<button id="signinSubmit" type="submit" class="btn btn-success btn-block">Sign in</button>
