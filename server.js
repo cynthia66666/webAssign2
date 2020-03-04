@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars');
 const model = require("./model/product");
 const bodyParser = require('body-parser');
 //load the environment variable file
-require('dotenv').config({path:"./config/key.env"}) ;
+require('dotenv').config({path:"./config/keys.env"}) ;
 
 const app = express();
 
@@ -160,7 +160,7 @@ app.post("/login",(req,res)=>{
        res.redirect("/products");
    }
 });
-const PORT = 3000;
-app.listen(PORT,()=>{
+
+app.listen(process.env.PORT,()=>{
     console.log(`Web Server Started`);
 });
