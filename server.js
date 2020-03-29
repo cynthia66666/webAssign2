@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
-const model = require("./model/product");
+//const model = require("./model/product");
 const bodyParser = require('body-parser');
 //load the environment variable file
 require('dotenv').config({path:"./config/keys.env"}) ;
@@ -14,6 +14,21 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+//load controllers
+const homeController=require("./controllers/home")
+const loginController=require("./controllers/login")
+const productsController=require("./controllers/products")
+const registerController=require("./controllers/register")
+
+//map each controller to the app object
+
+
+app.use("/", homeController);
+app.use("/login",loginController);
+app.use("/products",productsController);
+app.use("/cusRegistration",registerController);
+
+/*
 app.get("/",(req,res)=>{
 
     res.render("home",{
@@ -23,7 +38,7 @@ app.get("/",(req,res)=>{
         
     });
 });
-
+/*
 app.get("/products",(req,res)=>{
 
     res.render("products",{ //same name with the name of the handlebars
@@ -32,7 +47,8 @@ app.get("/products",(req,res)=>{
        // data : model.product.getAllProduct()
     });
 });
-
+*/
+/*
 app.get("/cusRegistration",(req,res)=>{
     
     res.render("cusRegistration",{
@@ -47,6 +63,8 @@ app.get("/login",(req,res)=>{
         
     });
 });
+*/
+/*  
 ////process registration form for when user submits form
 app.post("/cusRegistration",(req,res)=>{
     const errorNM=[];
@@ -129,12 +147,13 @@ app.post("/cusRegistration",(req,res)=>{
     
     }
 });
+*/
 app.get("/regissub",(req,res)=>{
     res.render("regissub",{
         title :"Register Submit"
     })
 })
-
+/*
 app.post("/login",(req,res)=>{
    const errornm=[];
    const errorpw=[];
@@ -160,7 +179,7 @@ app.post("/login",(req,res)=>{
        res.redirect("/products");
    }
 });
-
+*/
 app.listen(process.env.PORT,()=>{
     console.log(`Web Server Started`);
 });
