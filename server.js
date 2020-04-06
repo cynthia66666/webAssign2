@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
-//const model = require("./model/product");
+const model = require("./model/product");
 const bodyParser = require('body-parser');
 //load the environment variable file
 require('dotenv').config({path:"./config/keys.env"}) ;
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const homeController=require("./controllers/home")
 const loginController=require("./controllers/login")
 const productsController=require("./controllers/products")
-const registerController=require("./controllers/register")
+const registerController=require("./controllers/cusRegistration")
 
 //map each controller to the app object
 
@@ -180,6 +180,14 @@ app.post("/login",(req,res)=>{
    }
 });
 */
-app.listen(process.env.PORT,()=>{
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log(`Connected to MongoDB Database`);
+})
+.catch(err=>console.log(`ERROR occured when connecting to the database ${err}`))
+
+const PORT=process.env.PORT;
+app.listen(PORT,()=>{
     console.log(`Web Server Started`);
 });

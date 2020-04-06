@@ -1,14 +1,37 @@
 const express=require('express')
 const router=express.Router();
-
-router.get("/cusRegistration",(req,res)=>{
+const usermodel=require("../model/users.js");
+router.get("/",(req,res)=>{
     
     res.render("cusRegistration",{
         title : "Contact Us",
     });
 });
 
-router.post("/cusRegistration",(req,res)=>{
+router.post("/",(req,res)=>{
+    /* rules for inserting into MonDB databse USING MONGOOSE is to do the following:
+    1. You have to create an instance of te model, you must pass data that you wanna 
+    insert in the form of an object(object literal)
+    2. From the instance, you can the save mothod
+    */
+   const newUser={
+        signupName:req.body.signupName,//naming has to be same as the names in users.js
+        signupEmail:req.body.signupEmail,
+        password:req.body.password,
+        passwordagain:req.body.passwordagain
+   }
+   const user= new usermodel(newUser);//create a new instance of usermodel and pass structure to it
+   user.save() //return a promist
+   .then(()=>
+   {
+        res.redirect("/regissub");
+
+   })
+   .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
+
+
+
+
     const errorNM=[];
     const errorEM=[];
     const errorPM=[];
@@ -89,4 +112,4 @@ router.post("/cusRegistration",(req,res)=>{
     
     }
 });
-module.exprorts=router;
+module.exports=router;

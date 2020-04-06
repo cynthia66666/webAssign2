@@ -3,7 +3,7 @@ const router=express.Router();
 //load product model
 const model = require("../model/product");
 
-router.get("/products",(req,res)=>{
+router.get("/",(req,res)=>{
 
     res.render("products",{ //same name with the name of the handlebars
         title : "Product",
@@ -13,4 +13,4 @@ router.get("/products",(req,res)=>{
 });
 
 
-module.exprorts=router;
+module.exports=router;

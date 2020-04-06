@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router();
 
-router.get("/login",(req,res)=>{
+router.get("/",(req,res)=>{//no need to repeat the route again
    
     res.render("login",{
         title : "login",
@@ -10,7 +10,7 @@ router.get("/login",(req,res)=>{
 });
 
 
-router.post("/login",(req,res)=>{
+router.post("/",(req,res)=>{
     const errornm=[];
     const errorpw=[];
     if(req.body.signinEmail=="")
@@ -35,5 +35,5 @@ router.post("/login",(req,res)=>{
         res.redirect("/products");
     }
  });
- 
+ module.exports=router;
  
