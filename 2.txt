@@ -1,2 +1,7 @@
 webassgn2
 Lfz0mgEpNi96sehb
+
+mongodb+srv://<username>:<password>@cluster0-sahyn.mongodb.net/test?retryWrites=true&w=majority
+
+
+mongodb+srv://webassgn2:Lfz0mgEpNi96sehb@cluster0-sahyn.mongodb.net/webassig2?retryWrites=true&w=majority

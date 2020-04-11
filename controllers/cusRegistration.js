@@ -14,21 +14,7 @@ router.post("/",(req,res)=>{
     insert in the form of an object(object literal)
     2. From the instance, you can the save mothod
     */
-   const newUser={
-        signupName:req.body.signupName,//naming has to be same as the names in users.js
-        signupEmail:req.body.signupEmail,
-        password:req.body.password,
-        passwordagain:req.body.passwordagain
-   }
-   const user= new usermodel(newUser);//create a new instance of usermodel and pass structure to it
-   user.save() //return a promist
-   .then(()=>
-   {
-        res.redirect("/regissub");
-
-   })
-   .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
-
+  
 
 
 
@@ -103,13 +89,32 @@ router.post("/",(req,res)=>{
         };
 
         sgMail.send(msg)
-        .then(()=>{
+        const newUser={
+            signupName:req.body.signupName,//naming has to be same as the names in users.js
+            signupEmail:req.body.signupEmail,
+            password:req.body.password,
+            passwordagain:req.body.passwordagain
+       }
+       const user= new usermodel(newUser);//create a new instance of usermodel and pass structure to it
+       user.save() //return a promist
+       .then(()=>
+       {
+            res.redirect("/regissub");
+    
+       })
+       .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
+    
+
+
+        /*.then(()=>{
             res.redirect("/regissub");
         })
         .catch(err=>{
             console.log(`Error ${err}`);
-        })
+        })*/
     
     }
 });
+
+
 module.exports=router;

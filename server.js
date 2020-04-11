@@ -19,7 +19,7 @@ const homeController=require("./controllers/home")
 const loginController=require("./controllers/login")
 const productsController=require("./controllers/products")
 const registerController=require("./controllers/cusRegistration")
-
+const regissubController=require("./controllers/regissub")
 //map each controller to the app object
 
 
@@ -27,6 +27,7 @@ app.use("/", homeController);
 app.use("/login",loginController);
 app.use("/products",productsController);
 app.use("/cusRegistration",registerController);
+app.use("/regissub",regissubController);
 
 /*
 app.get("/",(req,res)=>{
@@ -148,11 +149,13 @@ app.post("/cusRegistration",(req,res)=>{
     }
 });
 */
+/*
 app.get("/regissub",(req,res)=>{
     res.render("regissub",{
         title :"Register Submit"
     })
 })
+*/
 /*
 app.post("/login",(req,res)=>{
    const errornm=[];
@@ -180,6 +183,10 @@ app.post("/login",(req,res)=>{
    }
 });
 */
+
+
+
+
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
