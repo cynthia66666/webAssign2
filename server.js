@@ -194,7 +194,7 @@ mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true,
 })
 .catch(err=>console.log(`ERROR occured when connecting to the database ${err}`))
 
-const PORT=process.env.PORT;
-app.listen(PORT,()=>{
+//const PORT=;
+app.listen(process.env.PORT||3000,()=>{
     console.log(`Web Server Started`);
 });
