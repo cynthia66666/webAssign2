@@ -9,15 +9,7 @@ router.get("/",(req,res)=>{
 });
 
 router.post("/",(req,res)=>{
-    /* rules for inserting into MonDB databse USING MONGOOSE is to do the following:
-    1. You have to create an instance of te model, you must pass data that you wanna 
-    insert in the form of an object(object literal)
-    2. From the instance, you can the save mothod
-    */
-  
-
-
-
+    
     const errorNM=[];
     const errorEM=[];
     const errorPM=[];
@@ -89,6 +81,11 @@ router.post("/",(req,res)=>{
         };
 
         sgMail.send(msg)
+        /* rules for inserting into MonDB databse USING MONGOOSE is to do the following:
+        1. You have to create an instance of te model, you must pass data that you wanna 
+        insert in the form of an object(object literal)
+        2. From the instance, you can the save mothod
+        */
         const newUser={
             signupName:req.body.signupName,//naming has to be same as the names in users.js
             signupEmail:req.body.signupEmail,
@@ -100,21 +97,9 @@ router.post("/",(req,res)=>{
        .then(()=>
        {
             res.redirect("/regissub");
-    
        })
        .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
-    
-
-
-        /*.then(()=>{
-            res.redirect("/regissub");
-        })
-        .catch(err=>{
-            console.log(`Error ${err}`);
-        })*/
-    
     }
 });
-
 
 module.exports=router;

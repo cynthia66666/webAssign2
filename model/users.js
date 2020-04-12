@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt=require("bcryptjs");
 //indicate the shape of the document that will be entering into the datbase
 const userSchema = new Schema({
  
@@ -22,9 +23,29 @@ const userSchema = new Schema({
     {
         type:String,
         require:true,
+    },
+    dateCreated:
+    {
+        type:Date,
+        default:Date.now()
     }
-
 });
+
+userSchema.pre("save",function(next)
+{
+    //salt random generated characters or strings
+    bcrypt.genSalt(10)
+    .then((salt)=>{
+        bcrypt.hash(this.password,salt)
+        .then((encryptPassword)=>{
+            this.password=encryptPassword;
+            next();
+        })
+        .catch(err=>console.log(`Error occured when hashing ${err}`));
+    })
+    .catch(err=>console.log(`Error occured when salting ${err}`));
+
+})
 // For every schem you create(Create a schema per collection), you must also create a model
 // The model will allow you to perform CRUD operations on a given collection
 const usermodel = mongoose.model('User', userSchema);
