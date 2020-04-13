@@ -2,6 +2,8 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const model = require("./model/product");
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const session = require('express-session');
 //load the environment variable file
 require('dotenv').config({path:"./config/keys.env"}) ;
 
@@ -12,7 +14,12 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-
+//
+app.use(session({
+    secret: `${process.env.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true
+  }))
 
 //load controllers
 const homeController=require("./controllers/home")
@@ -28,6 +35,19 @@ app.use("/login",loginController);
 app.use("/products",productsController);
 app.use("/cusRegistration",registerController);
 app.use("/regissub",regissubController);
+
+
+mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log(`Connected to MongoDB Database`);
+})
+.catch(err=>console.log(`ERROR occured when connecting to the database ${err}`))
+
+const PORT=process.env.PORT;
+//Creates an express web server that listens for incoming HTTP requests
+app.listen(PORT,()=>{
+    console.log(`Web Server Started`);
+});
 
 /*
 app.get("/",(req,res)=>{
@@ -184,17 +204,3 @@ app.post("/login",(req,res)=>{
 });
 */
 
-
-
-
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>{
-    console.log(`Connected to MongoDB Database`);
-})
-.catch(err=>console.log(`ERROR occured when connecting to the database ${err}`))
-
-//const PORT=;
-app.listen(process.env.PORT||3000,()=>{
-    console.log(`Web Server Started`);
-});
