@@ -6,4 +6,10 @@ router.get("/",(req,res)=>{
         title :"Register Submit",
     });
 })
+
+
+router.get("/logout",(req,res)=>{
+    req.session.destory();//kill the session
+    res.redirect("/login")//redirect users to login page
+})
 module.exports = router;

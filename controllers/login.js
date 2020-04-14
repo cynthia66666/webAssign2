@@ -1,5 +1,7 @@
-const express=require('express')
+const express=require('express');
 const router=express.Router();
+const usermodel=require("../model/users.js");
+const bcrypt=require("bcryptjs");
 
 router.get("/",(req,res)=>{//no need to repeat the route again
    
@@ -32,7 +34,45 @@ router.post("/",(req,res)=>{
         });
     }
     else{
-        res.redirect("/products");
+        usermodel.findOne({email:req.body.signinEmail})
+        .then(user=>{
+
+            const errors=[];
+            //email not found
+            if(user==null)
+            {
+                errors.push("Sorry, your email and/or password encorrect");
+                res.render("login",{//handlebars
+                    errors
+                })
+            }
+            //email is found
+            else
+            {
+                bcrypt.compare(req.body.signinPassword,user.signinPassword)
+                    .then(isMatched=>{
+                        if(isMatched)
+                        {
+                            //create the session
+                            req.session.userInfo=user;
+                            res.redirect("/regissub");
+                        }
+                        else
+                        {
+                            errors.push("Sorry, your email and/or password encorrect");
+                            res.render("login",{//handlebars
+                                errors
+                            })
+                        }
+
+                    })
+                    .catch(err=>console.log(`Error ${err}`));
+                
+            }
+
+        })
+        .catch(err=>console.log(`Error${err}`));
+
     }
  });
  module.exports=router;
