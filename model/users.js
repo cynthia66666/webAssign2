@@ -9,7 +9,7 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    signupEmail:
+    email:
     {
         type:String,
         required:true
@@ -28,6 +28,11 @@ const userSchema = new Schema({
     {
         type:Date,
         default:Date.now()
+    },
+    type:
+    {
+        type:String,
+        default:"User"
     }
 });
 

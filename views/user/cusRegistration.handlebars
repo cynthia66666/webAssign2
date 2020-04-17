@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="panel panel-primary">
 				<div class="panel-body">
-					<form method="POST" action="/cusRegistration" role="form" class="reg">
-						<img src="img/transparent.jpg" width="100" height="75" >
+					<form method="POST" action="/user/cusRegistration" role="form" class="reg">
+						<img src="/img/transparent.jpg" width="100" height="75" >
 						<div class="form-reg">
 							<h2 class="form-title">Create account</h2>
 						</div>
@@ -16,7 +16,7 @@
 						<br>
 						<div class="form-reg">
 							<label class="control-label" for="signupEmail">Email</label> <br>
-							<input id="signupEmail" type="email"  class="form-control" name="signupEmail"  value="{{this.signupEmail}}">
+							<input id="signupEmail" type="email"  class="form-control" name="email"  value="{{this.email}}">
 							<div>{{this.eerror}}</div>
 						</div>
 						<br>
@@ -36,7 +36,7 @@
 						</div>
 						<br>
 						<hr>
-						<p></p>Already have an account? <a href="/login">Sign in</a></p>
+						<p></p>Already have an account? <a href="/user/login">Sign in</a></p>
 
 					</form><br>
 				</div>

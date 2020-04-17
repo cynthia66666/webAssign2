@@ -10,15 +10,22 @@
 </head>
 <body>
     <header>
-      <a href="/"><img src="img/heading.png" width="100" height="60" ></a> 
+      <a href="/"></a><img src="/img/heading.png" width="100" height="60" ></a> 
         
         <nav>
             <ul class="navbar">
-                <li><a href="/login"class="navr">Login </a></li>
-                <li><a href="/cusRegistration"class="navr">Sign Up</a></li>
-                <li><a href="/products"class="navr">Product</a></li>
+                
+            
+            {{#if user}}
+                <li><a href="/user/logout"class="navr">Logout</a></li>
+            {{else}}
+                <li><a href="/user/login"class="navr">Login </a></li>
+                <li><a href="/user/cusRegistration"class="navr">Sign Up</a></li>
+            {{/if}}
+                <li><a href="/product"class="navr">Product</a></li>
                 <li><a href="/"class="navr">Home</a></li>
-                <li><a href="/login" class="navl">Hello, Sign in</a></li>
+                <li><a href="/user/login" class="navl">Hello, Sign in</a></li>
+            
             </ul>
         </nav>    
     </header> 
@@ -45,9 +52,9 @@
    <div class="menuFooter">
             <p class="footer-title">Menu Items</p>
             <ul class="footer-link">
-            <li><a class="footer-link" href="/products">products</a></li>
-            <li><a class="footer-link" href="/login">login</a></li>
-            <li><a class="footer-link" href="/cusRegistration">regisiter</a></li>
+            <li><a class="footer-link" href="/product">product</a></li>
+            <li><a class="footer-link" href="/user/login">login</a></li>
+            <li><a class="footer-link" href="/user/cusRegistration">regisiter</a></li>
             </ul></div>
   
 </div>
@@ -66,7 +73,7 @@
     <span>
       <center>
          <a href="/">
-         <img src="img/footer.png" alt="amazon" width="100" height="40" >
+         <img src="/img/footer.png" alt="amazon" width="100" height="40" >
          </a> 
       </center>
     </span>

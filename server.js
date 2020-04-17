@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
-const model = require("./model/product");
+//const model = require("./model/product");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -12,29 +12,46 @@ const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+
 //
+/*
+app.use((req,res,next)=>{
+
+    if(req.query.method=="PUT")
+    {
+        req.method="PUT"
+    }
+
+    else if(req.query.method=="DELETE")
+    {
+        req.method="DELETE"
+    }
+
+    next();
+});
+app.use(fileUpload());
+*/
 app.use(session({
     secret: `${process.env.SECRET_KEY}`,
     resave: false,
     saveUninitialized: true
-  }))
-
+  }));
+ //every handler bar can enter the session as the global template variable
+app.use((req,res,next)=>{
+    res.locals.user=req.session.userInfo;
+    next();
+});
 //load controllers
-const homeController=require("./controllers/home")
-const loginController=require("./controllers/login")
-const productsController=require("./controllers/products")
-const registerController=require("./controllers/cusRegistration")
-const regissubController=require("./controllers/regissub")
+const generalController=require("./controllers/general");
+const productController=require("./controllers/product");
+const userController=require("./controllers/User");
+
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
 //map each controller to the app object
-
-
-app.use("/", homeController);
-app.use("/login",loginController);
-app.use("/products",productsController);
-app.use("/cusRegistration",registerController);
-app.use("/regissub",regissubController);
+app.use("/", generalController);
+app.use("/user",userController);
+app.use("/product",productController);
 
 
 mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})

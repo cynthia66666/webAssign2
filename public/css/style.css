@@ -1,5 +1,19 @@
-
-
+.logsub a {
+  color: rgb(114, 18, 18);
+  font-size: large;
+  font-weight: bolder;
+ 
+}
+.logsub li {
+   text-decoration: none; /*unset the footer li*/
+  list-style-type: none;
+}
+.favorite{
+  color:brown;
+  font-size:x-large;
+  font-weight: bolder;
+  
+}
 .best-seller{
   background-color:rgb(226, 205, 208);
 }
@@ -13,7 +27,7 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-        overflow: hidden;
+  overflow: hidden;
 }
       
 nav .navr {
@@ -21,7 +35,7 @@ nav .navr {
 
 }
       
-      li a {
+ li a {
         display: block;
         color: rgb(233, 224, 226);;
         text-align: center;
@@ -261,7 +275,7 @@ li{
 }
 /*For medium tablet*/
 @media(max-width:767px){
-  nav>ul>li
+  nav>>li
   {display:block;
   padding:0px;
   margin:0px;
