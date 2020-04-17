@@ -107,6 +107,12 @@ router.put("/update/:id",(req,res)=>{
 });
 
 router.delete("/delete/:id",(req,res)=>{
+    
+    productModel.deleteOne({_id:req.params.id})
+    .then(()=>{
+        res.redirect('/product/list');
+    })
+    .catch(err=>console.log(`Error happened when deleting data from the database:${err}`));
 
 });
 
