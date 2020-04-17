@@ -193,6 +193,7 @@ router.get("/loginsub",isAuthenticated,(req,res)=>{
 */
 router.get("/loginsub",isAuthenticated,dashboardLoader);
 
+
 router.get("/logout",(req,res)=>{
     req.session.destroy();//kill the session
     res.redirect("/user/login")//redirect users to login page
@@ -201,6 +202,12 @@ router.get("/admin-profile",isAuthenticated,(req,res)=>{
     res.render("User/adminDashboard",{
         title:"Admin Profile",
     });
+});
+router.get("/clerk-profile",isAuthenticated,(req,res)=>{
+    res.render("User/clerkDashboard",{
+        title:"Clerk Dashboard",
+    })
+
 });
 
 

@@ -19,6 +19,6 @@ router.get("/product",(req,res)=>{
         data : model.getAllProduct()
        // data : model.product.getAllProduct()
     });
-});
+}); 
 
 module.exports=router;

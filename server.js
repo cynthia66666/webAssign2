@@ -6,15 +6,14 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 //load the environment variable file
 require('dotenv').config({path:"./config/keys.env"}) ;
+//
+//const fileUpload = require('express-fileupload');
 
 const app = express();
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-
-//
-/*
 app.use((req,res,next)=>{
 
     if(req.query.method=="PUT")
@@ -29,8 +28,8 @@ app.use((req,res,next)=>{
 
     next();
 });
-app.use(fileUpload());
-*/
+//app.use(fileUpload());
+
 app.use(session({
     secret: `${process.env.SECRET_KEY}`,
     resave: false,
@@ -45,6 +44,7 @@ app.use((req,res,next)=>{
 const generalController=require("./controllers/general");
 const productController=require("./controllers/product");
 const userController=require("./controllers/User");
+//const cartController=require('./controllers/Cart')
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,6 +52,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", generalController);
 app.use("/user",userController);
 app.use("/product",productController);
+//app.use("/cart",cartController);
 
 
 mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})

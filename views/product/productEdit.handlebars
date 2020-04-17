@@ -1,0 +1,47 @@
+<div class=products-form>
+ <h2>Add Product</h2>
+    
+    <form method="POST" action="/product/edit">
+
+        <label>Product Name</label>
+        <input type="text" name="name" id="name"> <br><br>
+
+        <label>Product Price</label>
+        <input type="text" name="price" id="price"> <br><br>
+ 
+        <label>Product Description or Details</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label>Product Category</label>
+        <select name="category">
+            <option value="Electronics & Accessories">Electronics & Accessories</option>
+            <option value="Revamp your home">Revamp your home</option>
+            <option value="Shop Valentine's Day gifts">Shop Valentine's Day gifts</option>
+            <option value="Fitness,Cardio and more">Fitness,Cardio and more</option>
+        </select>
+
+        <label>Product Quantity</label>
+        <input type="number" name="quantity" id="quantity"> <br><br>
+
+        <label>Best Seller</label>
+        <select name="bestSeller">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label >Upload Picture</label>
+        <input type="file" name="productImg" id="addupload"> <br>
+        <br><br>
+
+        <label>Status</label> : Open
+       <!-- <select name="status">
+            <option value="open">Open</option>
+            <option value="hold">On Hold</option>
+            <option value="completed">Completed</option>
+        </select>-->
+        <br><br>
+
+        <button><input type="submit" value="Add Task">Add Product</button>
+
+    </form>
+</div>    
