@@ -1,47 +1,44 @@
-<div class=products-form>
- <h2>Add Product</h2>
-    
-    <form method="POST" action="/product/edit">
+ <h2>Update Task</h2>
+    <form method="POST" action="/product/update/{{_id}}?method=PUT">
 
-        <label>Product Name</label>
-        <input type="text" name="name" id="name"> <br><br>
-
+        <label>Name</label>
+        <input type="text" name="name" id="name" value="{{name}}" > <br><br>
+        
         <label>Product Price</label>
-        <input type="text" name="price" id="price"> <br><br>
- 
+        <input type="text" name="price" id="price" value="{{price}}"><br><br>
+        
         <label>Product Description or Details</label>
-        <textarea id="description" name="description"></textarea><br><br>
+        <textarea id="description" name="description">{{description}}</textarea><br><br>
 
         <label>Product Category</label>
         <select name="category">
-            <option value="Electronics & Accessories">Electronics & Accessories</option>
-            <option value="Revamp your home">Revamp your home</option>
-            <option value="Shop Valentine's Day gifts">Shop Valentine's Day gifts</option>
+            <option value="Electronics & Accessories" >Electronics & Accessories</option>
+            <option value="Revamp your home" >Revamp your home</option>
+            <option value="Shop Valentine's Day gifts" >Shop Valentine's Day gifts</option>
             <option value="Fitness,Cardio and more">Fitness,Cardio and more</option>
         </select>
+        <br><br>
 
         <label>Product Quantity</label>
-        <input type="number" name="quantity" id="quantity"> <br><br>
+        <input type="number" name="quantity" id="quantity" value="{{quantity}}" > <br><br>
 
-        <label>Best Seller</label>
+        <label>Bset Seller</label>
         <select name="bestSeller">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
         </select>
-
+        <br>
         <label >Upload Picture</label>
-        <input type="file" name="productImg" id="addupload"> <br>
-        <br><br>
+        <input type="file" name="productImg" id="addupload"value="{{productImg}}"> <br><br>
 
-        <label>Status</label> : Open
-       <!-- <select name="status">
+         <label>Status</label>
+        <select name="status">
             <option value="open">Open</option>
             <option value="hold">On Hold</option>
             <option value="completed">Completed</option>
-        </select>-->
+        </select>
         <br><br>
+        
 
-        <button><input type="submit" value="Add Task">Add Product</button>
-
+        <input type="submit" value="Update Task">
     </form>
-</div>    

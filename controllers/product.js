@@ -16,6 +16,7 @@ router.post("/add",(req,res)=>
         quantity : req.body.quantity,
         bestSeller : req.body.bestSeller,
         status:req.body.status
+        
     }
 
     const product = new productModel(newProduct);
@@ -57,11 +58,56 @@ router.get("/list",(req,res)=>{
             data:filteredProduct
         });
     })
-    .catch(err=>console.log(`Error happened when pulling from the database:${err}`));
+    .catch(err=>console.log(`Error happened when pulling data from the database:${err}`));
+
+});
+//find(): when to pull multiply values from the database
+//findById()
+router.get("/edit/:id",(req,res)=>{
+    productModel.findById(req.params.id)
+    .then((product)=>{
+        const {_id,name,price,description,category,quantity,bestSeller,status,productImg}=product;
+        res.render("Product/productEdit",{
+            _id,
+            name,
+            price,
+            description,
+            category,
+            quantity,
+            bestSeller,
+            status,
+            productImg
+    })
+})
+    .catch(err=>console.log(`Error happened when pulling data from the database:${err}`));
+
+    
+})
+
+router.put("/update/:id",(req,res)=>{
+
+    const product=
+    {
+        name : req.body.name,
+        price : req.body.price,
+        description : req.body.description,
+        category : req.body.category,
+        quantity : req.body.quantity,
+        bestSeller : req.body.bestSeller,
+        status:req.body.status,
+        productImg:req.body.productImg
+    }
+    productModel.updateOne({_id:req.params.id},product)
+    .then(()=>
+    {
+        res.redirect('/product/list');
+    })
+    .catch(err=>console.log(`Error happened when updating data from the database:${err}`));
 
 });
 
+router.delete("/delete/:id",(req,res)=>{
 
-
+});
 
 module.exports=router;
