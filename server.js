@@ -6,8 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 //load the environment variable file
 require('dotenv').config({path:"./config/keys.env"}) ;
-//
-//const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -38,7 +37,7 @@ app.use((req,res,next)=>{
 
     next();
 });
-//app.use(fileUpload());
+app.use(fileUpload());
 
 app.use(session({
     secret: `${process.env.SECRET_KEY}`,
