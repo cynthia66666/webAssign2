@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
-//const model = require("./model/product");
+const model = require("./model/product");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
