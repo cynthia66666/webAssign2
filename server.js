@@ -66,7 +66,7 @@ app.use((req,res,next)=>{
 //load controllers
 const generalController=require("./controllers/general");
 const productController=require("./controllers/product");
-const userController=require("./controllers/User");
+const userController=require("./controllers/user");
 
 
 app.use(express.static("public"));
