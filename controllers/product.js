@@ -4,7 +4,7 @@ const router=express.Router();
 const productModel = require("../model/products");
 const path = require("path");
 router.get("/add",(req,res)=>{
-    res.render("Product/productAdd");
+    res.render("product/productAdd");
 });
 router.post("/add",(req,res)=>
 {
@@ -62,7 +62,7 @@ router.get("/list/:id",(req,res)=>{
         });
 
 
-        res.render("Product/productDashboard",{
+        res.render("product/productDashboard",{
             data:filteredProduct
         });
     })
@@ -75,7 +75,7 @@ router.get("/edit/:id",(req,res)=>{
     productModel.findById(req.params.id)
     .then((product)=>{
         const {_id,name,price,description,category,quantity,bestSeller,status,productImg}=product;
-        res.render("Product/productEdit",{
+        res.render("product/productEdit",{
             _id,
             name,
             price,
