@@ -10,14 +10,28 @@ const fileUpload = require('express-fileupload');
 
 const app = express();
 
-app.engine('handlebars', exphbs(
-    /*helpers:{
-        if_eq:function()
+app.engine('handlebars', exphbs({
+    helpers:{
+        if_eq:function(c1,c2,options)
         {
-
+            if(c1==c2){
+                return options.fn(this);
+            }  
+            else{
+                return options.inverse(this);
+            }
+        },
+        if_higher: function(c1,c2,options){
+            if(c1>c2){
+                return optioons.fn(this);
+            }
+            else{
+                return options.inverse(this);
+            }
+            
         }
     }
-    */
+}
 ));
 app.set('view engine', 'handlebars');
 
@@ -53,7 +67,7 @@ app.use((req,res,next)=>{
 const generalController=require("./controllers/general");
 const productController=require("./controllers/product");
 const userController=require("./controllers/User");
-//const cartController=require('./controllers/Cart')
+
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -61,7 +75,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", generalController);
 app.use("/user",userController);
 app.use("/product",productController);
-//app.use("/cart",cartController);
+
 
 
 mongoose.connect(process.env.MANGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})

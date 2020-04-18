@@ -22,27 +22,22 @@ router.post("/add",(req,res)=>
     const product = new productModel(newProduct);
     product.save()
     .then((product)=>{
-                req.files.productImg.name = `pro_pic_${product._id}${req.files.productImg.name}${path.parse(req.files.productImg.name).ext}`
-                req.files.productImg.mv(`public/uploads/${req.files.productImg.name}`)  
-
+                req.files.productImg.name=`pro_pic_${product._id}${path.parse(req.files.productImg.name).ext}`
+                req.files.productImg.mv(`public/uploads/${req.files.productImg.name}`)
                 .then(()=>{
+                    productModel.updateOne({_id:product._id})
 
-                    productModel.updateOne({_id:product._id},{
-                        productImg:req.files.productImg.name
-                    })
-                    .then(()=>{
-                        //to pull with product id
-                        res.redirect(`/product/list/${product._id}`);
-                    })
-                    
+                    res.redirect(`/product/list/${product._id}`);
                 })
+
+
                 
             })
     .catch(err=>console.log(`Error happened when inserting in the database:${err}`));
    
 });
 
-router.get("/list/",(req,res)=>{
+router.get("/list/:id",(req,res)=>{
     //pull from the database, get the results that was returned and 
     //then inject that results into the productDashboard
     productModel.find()
@@ -108,22 +103,22 @@ router.put("/update/:id",(req,res)=>{
         quantity : req.body.quantity,
         bestSeller : req.body.bestSeller,
         status:req.body.status,
-       // productImg:req.body.productImg
+        //productImg:req.body.productImg
     }
     productModel.updateOne({_id:req.params.id},product)
     .then((product)=>
     {
-        req.files.productImg.name = `pro_pic_${product._id}${req.files.productImg.name}${path.parse(req.files.productImg.name).ext}`
-        req.files.productImg.mv(`public/uploads/${req.files.productImg.name}`)  
+        req.files.productImg.name=`pro_pic_${product._id}${path.parse(req.files.productImg.name).ext}`;
+        req.files.productImg.mv(`public/uploads/${req.files.productImg.name}`)
         .then(()=>{
             productModel.updateOne({_id:product._id},{
-            productImg: req.files.productImg.name
-            
+                productImg:req.files.productImg.name
+            })
+            .then(()=>{
+                res.redirect(`/product/list/${product._id}`);
+            })
         })
-        .then(()=>{
-            res.redirect("/product/list");
-        })
-    })
+        
     })
     .catch(err=>console.log(`Error happened when updating data from the database:${err}`));
 
