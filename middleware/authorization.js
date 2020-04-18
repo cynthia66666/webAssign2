@@ -1,15 +1,15 @@
 const dashBoardLoader = (req,res,next)=>{
     if(req.session.userInfo.type=="Admin")//check the admin
     {
-       res.render("User/adminDashboard")
+       res.render("user/adminDashboard")
     }
     else if (req.session.userInfo.type=="Clerk")//check the clerk 
     {
-        res.render("User/clerkDashboard")
+        res.render("user/clerkDashboard")
     }
     else
     {
-        res.render("User/loginsub")
+        res.render("user/loginsub")
     }
 }
 
