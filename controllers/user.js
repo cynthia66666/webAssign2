@@ -6,7 +6,7 @@ const bcrypt=require("bcryptjs");
 const dashboardLoader=require("../middleware/authorization");
 router.get("/login",(req,res)=>{
    
-    res.render("User/login",{
+    res.render("user/login",{
         title : "login"
     });
 });
@@ -180,7 +180,7 @@ router.post("/cusRegistration",(req,res)=>{
 
 router.get("/regissub",(req,res)=>{
    
-    res.render("User/regissub",{
+    res.render("user/regissub",{
         title :"Register Submit",
     });
 });
@@ -199,12 +199,12 @@ router.get("/logout",(req,res)=>{
     res.redirect("/user/login")//redirect users to login page
 });
 router.get("/admin-profile",isAuthenticated,(req,res)=>{
-    res.render("User/adminDashboard",{
+    res.render("user/adminDashboard",{
         title:"Admin Profile",
     });
 });
 router.get("/clerk-profile",isAuthenticated,(req,res)=>{
-    res.render("User/clerkDashboard",{
+    res.render("user/clerkDashboard",{
         title:"Clerk Dashboard",
     })
 
