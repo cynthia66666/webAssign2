@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router();
 //load product model
-const productModel = require("../model/Products");
+const productModel = require("../model/products");
 const path = require("path");
 router.get("/add",(req,res)=>{
     res.render("Product/productAdd");
