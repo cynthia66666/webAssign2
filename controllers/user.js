@@ -25,7 +25,7 @@ router.post("/login",(req,res)=>{
     }
     if(errornm.length>0||errorpw.length>0)
     {
-        res.render("User/login",{
+        res.render("user/login",{
             title: "Login Page",
             nmerror:errornm,
             pwerror:errorpw,
@@ -41,7 +41,7 @@ router.post("/login",(req,res)=>{
             if(user==null)
             {
                 errors.push("Sorry, your email and/or password incorrect");
-                res.render("User/login",{//handlebars
+                res.render("user/login",{//handlebars
                     errors
                 })
             }
@@ -60,7 +60,7 @@ router.post("/login",(req,res)=>{
                         else
                         {
                             errors.push("Sorry, your  email and/or password incorrect");
-                            res.render("User/login",{//handlebars
+                            res.render("user/login",{//handlebars
                                 errors
                             })
                         }
@@ -78,7 +78,7 @@ router.post("/login",(req,res)=>{
 
 router.get("/cusRegistration",(req,res)=>{
     
-    res.render("User/cusRegistration",{
+    res.render("user/cusRegistration",{
         title : "Contact Us",
     });
 });
@@ -124,7 +124,7 @@ router.post("/cusRegistration",(req,res)=>{
     }
     if(errorNM>0||errorEM>0||errorPM.length>0||errorPM2.length>0)
     {
-        res.render("User/cusRegistration",{
+        res.render("user/cusRegistration",{
             title:"Register Page",
 
             signupName:req.body.signupName,
@@ -186,7 +186,7 @@ router.get("/regissub",(req,res)=>{
 });
 /*
 router.get("/loginsub",isAuthenticated,(req,res)=>{
-    res.render("User/loginsub",{
+    res.render("user/loginsub",{
         title:"Customer Login Submit",
     });
 });
